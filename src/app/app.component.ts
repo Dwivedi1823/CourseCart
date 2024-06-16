@@ -1,13 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { COURSES } from './courses';
+import { CourseCardComponent } from './course-card/course-card.component';
+import { Course } from './course.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule, CourseCardComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'course-card-app';
+  courses = COURSES;
+
+  onViewClicked(course: Course) {
+    console.log('Wants to view course ' + course.description);
+  }
 }
